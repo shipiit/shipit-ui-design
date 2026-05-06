@@ -19,54 +19,156 @@
 
 ## What it is
 
-`shipit-ui-design` is a Claude Code plugin. After install, when you work on a UI project, Claude Code follows the plugin's design rules: tokenized values, full state coverage, accessibility, motion, dark mode by default, dashboard and chart literacy, and a senior eye for hierarchy and rhythm.
+`shipit-ui-design` is a [Claude Code](https://claude.com/claude-code) plugin. After install, when you work on a UI project, Claude Code follows the plugin's design rules: tokenized values, full state coverage, accessibility, motion, dark mode by default, dashboard and chart literacy, and a senior eye for hierarchy and rhythm.
 
 It does not generate slide decks, prototypes, or standalone artifacts. It works **inside** your project — adapting to your stack (Next, Vite, Remix, Astro, Nuxt, SvelteKit, React Native).
 
 ## Why
 
-Most AI-generated UI looks junior — flat hierarchy, inconsistent spacing, hardcoded hex, missing states, broken dark mode. Audit-style plugins catch some of this after the fact. This plugin flips it: it ships a constitution, a rubric, and a screenshot-driven feedback loop so the UI lands clean the first time, and is improved against rendered pixels — not just source code — when it doesn't.
+Most AI-generated UI looks junior — flat hierarchy, inconsistent spacing, hardcoded hex, missing states, broken dark mode. Audit-style plugins catch some of this after the fact. This plugin flips it: it ships a constitution, a rubric, and a screenshot-driven feedback loop so the UI lands clean the first time, and gets improved against rendered pixels — not just source code — when it doesn't.
 
-## Install
+## Install — full guide for new users
 
-You'll need [Claude Code](https://claude.com/claude-code) installed and authenticated.
+Six steps, ~3 minutes total. Every step shows what to type and what you'll see.
+
+### Step 1 — Install Claude Code
+
+Skip if you already have Claude Code installed.
+
+| OS | Command |
+|---|---|
+| macOS | `brew install claude-code` |
+| Windows | Install via the [Claude Code installer](https://claude.com/claude-code) |
+| Linux | `npm install -g @anthropic-ai/claude-code` |
+| Any (npm) | `npm install -g @anthropic-ai/claude-code` |
+
+Verify the install:
 
 ```bash
-# 1. Open Claude Code in any project
-cd your-project
-claude
-
-# 2. Add this plugin's marketplace
-/plugin marketplace add shipiit/shipit-ui-design
-
-# 3. Open the plugin menu and install `shipit-ui-design`
-/plugin menu
-
-# 4. Restart Claude Code
+claude --version
 ```
 
-For the visual loop (`/refine`), one-time browser install per machine:
+You should see a version number. If you get "command not found", restart your terminal so the new binary is on your PATH.
+
+### Step 2 — Authenticate
+
+```bash
+claude
+```
+
+The first run opens a browser for you to sign in to your Anthropic account. After sign-in, the terminal app is ready.
+
+### Step 3 — Update if your version is older
+
+`/plugin` requires a recent Claude Code. Update before continuing:
+
+```bash
+brew upgrade claude-code            # macOS Homebrew
+npm install -g @anthropic-ai/claude-code@latest    # npm
+```
+
+Restart your terminal after upgrading.
+
+### Step 4 — Open Claude Code in any project
+
+```bash
+cd your-project
+claude
+```
+
+You don't have to install the plugin from a specific project — user-scope installs work everywhere — but you'll want to test it inside a real UI project.
+
+### Step 5 — Add the marketplace
+
+Inside Claude Code, run:
+
+```
+/plugin marketplace add shipiit/shipit-ui-design
+```
+
+What you'll see: a confirmation that the marketplace `shipit` was added, with one plugin available (`shipit-ui-design`). No plugins are installed yet — this just registers the catalog.
+
+### Step 6 — Install the plugin
+
+```
+/plugin install shipit-ui-design@shipit
+```
+
+What you'll see: a progress message, then a confirmation that the plugin installed. By default it installs to your **user scope** — available across every project on your machine.
+
+If you'd rather install at a different scope, type `/plugin` instead, go to **Discover**, press **Enter** on `shipit-ui-design`, and pick a scope:
+
+| Scope | Who sees it |
+|---|---|
+| **User** (default) | Just you, in every project |
+| **Project** | Everyone on this repo (committed to `.claude/settings.json`) |
+| **Local** | Just you, only this repo |
+
+### Step 7 — Activate
+
+```
+/reload-plugins
+```
+
+Skills and commands light up immediately, no restart needed. Restarting Claude Code works too if you prefer.
+
+### Step 8 — Verify
+
+```
+/plugin
+```
+
+Open the **Installed** tab — you should see `shipit-ui-design@shipit`. Open the **Errors** tab — it should be empty.
+
+If you see errors, jump to [Troubleshooting](#troubleshooting).
+
+### Step 9 (optional) — Install the visual-loop browser
+
+The `/refine` command uses Playwright to screenshot rendered pages. One-time install per machine:
 
 ```bash
 npx playwright install chromium
 ```
 
-That's it. From now on, the plugin's skills auto-activate when you open UI files, and the slash commands are available everywhere.
+Skip this if you don't plan to use `/refine`. The other commands work without it.
+
+---
+
+You're done. Try `/shipit-ui-design:design init` in any project to bootstrap a design system, or jump to [Quickstart](#quickstart) for more examples.
+
+## Slash command names
+
+Claude Code namespaces plugin commands with the plugin name. So a command defined as `design.md` becomes `/shipit-ui-design:design`.
+
+| Short form (in this README) | Actual command in Claude Code |
+|---|---|
+| `/design init` | `/shipit-ui-design:design init` |
+| `/palette` | `/shipit-ui-design:palette` |
+| `/component` | `/shipit-ui-design:component` |
+| `/refine` | `/shipit-ui-design:refine` |
+| `/audit` | `/shipit-ui-design:audit` |
+| `/motion` | `/shipit-ui-design:motion` |
+| `/illustrate` | `/shipit-ui-design:illustrate` |
+| `/scene` | `/shipit-ui-design:scene` |
+
+The rest of this README uses the short form for readability.
 
 ## Quickstart
 
-```bash
+Once installed:
+
+```
 # Bootstrap a design system in your project
-/design init
+/shipit-ui-design:design init
 
 # Generate a coherent palette from a brand color
-/palette #4f46e5
+/shipit-ui-design:palette #4f46e5
 
 # Generate a polished component
-/component subscription card with hover lift and a sparkline
+/shipit-ui-design:component subscription card with hover lift and a sparkline
 
 # Iterate visually until it looks right
-/refine /pricing
+/shipit-ui-design:refine /pricing
 ```
 
 ## Commands
@@ -109,7 +211,7 @@ Every artifact the plugin generates follows seven rules:
 6. **Dark mode is never an afterthought** — emitted alongside light from the start.
 7. **Stack-respect:** never introduce a new framework or styling system; adapt to what's there.
 
-The lint hook (`hooks/design-lint.sh`) warns on edits that violate rules 1 or 2. It never auto-fixes.
+The lint hook (`hooks/design-lint.sh`, registered via `hooks/hooks.json`) warns on edits that violate rules 1 or 2. It never auto-fixes.
 
 ## How `/refine` works
 
@@ -170,13 +272,14 @@ For multi-route refines (`/refine all`) and audits, the plugin fans out one suba
 
 ## Tech stack
 
-| Component | Stack | Notes |
-|---|---|---|
-| Skills, commands, references | Markdown with YAML frontmatter | Read by Claude Code at runtime |
-| Visual-loop runner | TypeScript / Node 20+ / ES modules | Strict TypeScript, single dep on `playwright` |
-| Lint hook | POSIX shell, dependency-free | ≤ 100 lines |
-| Plugin manifest | `plugin.json` | Lists skills, commands, hooks, tools |
-| Bundled assets | SVG | The plugin generates SVG; the logo is itself a generated SVG |
+| Component | Stack |
+|---|---|
+| Skills, commands, references | Markdown with YAML frontmatter |
+| Visual-loop runner | TypeScript / Node 20+ / ES modules / strict TS |
+| Lint hook | POSIX shell, dependency-free, ≤ 100 lines |
+| Plugin manifest | `.claude-plugin/plugin.json` |
+| Marketplace catalog | `.claude-plugin/marketplace.json` |
+| Bundled assets | SVG (the logo is itself a generated SVG using OKLCH colors) |
 
 No Python anywhere. No build step required for skills/commands/references. The visual-loop runner compiles to `dist/` via `tsc`.
 
@@ -184,13 +287,15 @@ No Python anywhere. No build step required for skills/commands/references. The v
 
 ```
 shipit-ui-design/
-├── plugin.json                      # marketplace manifest
-├── README.md
-├── LICENSE
+├── .claude-plugin/
+│   ├── plugin.json              # plugin manifest
+│   └── marketplace.json         # marketplace catalog
+├── README.md                    # this file
+├── LICENSE                      # MIT
 ├── assets/
 │   ├── logo.svg
 │   └── logo-wordmark.svg
-├── skills/
+├── skills/                      # auto-discovered SKILL.md files
 │   ├── ui-design-principles/SKILL.md
 │   ├── motion-design/SKILL.md
 │   ├── design-system-keeper/SKILL.md
@@ -199,31 +304,60 @@ shipit-ui-design/
 │   ├── dashboard-design/SKILL.md
 │   ├── data-visualization/SKILL.md
 │   └── color-engineering/SKILL.md
-├── commands/
+├── commands/                    # auto-discovered slash commands
 │   ├── design.md   palette.md   component.md   refine.md
 │   ├── audit.md    motion.md    illustrate.md  scene.md
 ├── hooks/
-│   └── design-lint.sh
-├── references/
+│   ├── hooks.json               # PostToolUse on Edit|Write → design-lint
+│   └── design-lint.sh           # POSIX shell, ≤ 100 lines
+├── references/                  # bundled docs read by skills/commands
 │   ├── canonical-tokens.md
 │   ├── palettes/   type-scales/   motion-curves/
 │   ├── component-blueprints/   dashboard-blueprints/
 │   ├── charts/   data-tables/   responsive-grids/
 │   ├── color-tools/   svg-style-guide/
 │   ├── design-rules/   spacing-cheat-sheets/
-├── tools/
-│   └── visual-loop/                # TypeScript Node runner
-│       ├── package.json   tsconfig.json   README.md
-│       └── src/
-│           ├── index.ts
-│           ├── detect-stack.ts
-│           ├── boot-dev-server.ts
-│           ├── capture.ts
-│           └── score.ts
-└── docs/
-    └── superpowers/specs/
-        └── 2026-05-06-shipit-ui-design-design.md
+└── tools/
+    └── visual-loop/             # TypeScript Node runner
+        ├── package.json   tsconfig.json   README.md
+        └── src/
+            ├── index.ts
+            ├── detect-stack.ts
+            ├── boot-dev-server.ts
+            ├── capture.ts
+            └── score.ts
 ```
+
+## Manage the plugin
+
+| Action | Command |
+|---|---|
+| List installed | `/plugin` → **Installed** tab |
+| Disable | `/plugin disable shipit-ui-design@shipit` |
+| Re-enable | `/plugin enable shipit-ui-design@shipit` |
+| Uninstall | `/plugin uninstall shipit-ui-design@shipit` |
+| Update marketplace | `/plugin marketplace update shipit` |
+| Apply changes without restart | `/reload-plugins` |
+
+## Troubleshooting
+
+**`/plugin` command not recognized.** Update Claude Code (`brew upgrade claude-code` or `npm install -g @anthropic-ai/claude-code@latest`) and restart your terminal.
+
+**Marketplace not loading.** Verify `https://github.com/shipiit/shipit-ui-design` is reachable and the `.claude-plugin/marketplace.json` file exists at its root.
+
+**Plugin skills/commands not appearing.** Run `/reload-plugins`. If still missing, clear the cache and reinstall:
+
+```bash
+rm -rf ~/.claude/plugins/cache
+```
+
+Then restart Claude Code, run `/plugin marketplace update shipit`, and reinstall.
+
+**`/refine` errors with "browser not installed".** Run `npx playwright install chromium`.
+
+**Hook isn't firing.** Make sure `hooks/design-lint.sh` is executable (`chmod +x hooks/design-lint.sh`).
+
+**Errors tab in `/plugin` shows a load error.** Open the **Errors** tab in `/plugin` for specifics — typical causes are a malformed `plugin.json` or a missing referenced file.
 
 ## Open decisions (verified at build time)
 
@@ -233,7 +367,6 @@ A few library choices were deliberately not pinned in the design — to be confi
 - **Palette library** — `culori` vs `colorjs.io` vs hand-rolled OKLCH.
 - **Motion library default** — Framer Motion vs Motion (Matt Perry fork).
 - **Chart library recommendation** — Recharts vs Visx vs Tremor vs ECharts vs Chart.js.
-- **Plugin manifest schema** — matches whatever Claude Code's marketplace currently expects.
 
 If you hit a mismatch, please open an issue.
 
@@ -241,10 +374,10 @@ If you hit a mismatch, please open an issue.
 
 PRs welcome. When proposing additions:
 
-- Skills and commands stay ≤ 300 lines each.
-- Every new design rule goes in `references/design-rules/` with the same template (rule, why, recommended approach, when to break, common mistakes, token mapping, cross-references).
-- New library dependencies for the visual-loop tool need a strong reason — one runtime dep today, keep it lean.
+- Skills, commands, and source files stay ≤ 300 lines each.
+- New design rules go in `references/design-rules/` with the same template (rule, why, recommended approach, when to break, common mistakes, token mapping, cross-references).
+- New runtime dependencies for the visual-loop tool need a strong reason — one runtime dep today, keep it lean.
 
 ## License
 
-MIT. See `LICENSE`.
+MIT. See [`LICENSE`](./LICENSE).

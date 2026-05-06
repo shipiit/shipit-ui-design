@@ -1,0 +1,41 @@
+{
+  "name": "shipit-ui-design",
+  "version": "0.1.0",
+  "description": "Senior UI/UX designer in your terminal — bootstraps design systems, generates polished components and dashboards, iterates visually via screenshot critique loops, plus palettes, SVG, motion, and 3D.",
+  "author": {
+    "name": "Rahul Raj",
+    "email": "rahul@iamrraj.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/shipiit/shipit-ui-design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shipiit/shipit-ui-design.git"
+  },
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "ui",
+    "ux",
+    "design",
+    "design-system",
+    "tailwind",
+    "react",
+    "next",
+    "svg",
+    "motion",
+    "three-fiber",
+    "palette",
+    "audit",
+    "dashboard",
+    "admin",
+    "charts",
+    "kpi",
+    "data-table",
+    "color",
+    "oklch",
+    "accessibility",
+    "wcag",
+    "responsive"
+  ]
+}

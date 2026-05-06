@@ -1,0 +1,34 @@
+{
+  "name": "shipit",
+  "description": "Marketplace for shipit-ui-design and related design plugins.",
+  "owner": {
+    "name": "Rahul Raj",
+    "email": "rahul@iamrraj.com"
+  },
+  "version": "0.1.0",
+  "plugins": [
+    {
+      "name": "shipit-ui-design",
+      "source": ".",
+      "description": "Senior UI/UX designer in your terminal — design systems, polished components, dashboards, charts, KPIs, palettes, motion, SVG, 3D, plus a screenshot-based visual critique loop.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Rahul Raj"
+      },
+      "category": "design",
+      "tags": [
+        "ui",
+        "ux",
+        "design-system",
+        "tailwind",
+        "react",
+        "dashboard",
+        "charts",
+        "palette",
+        "motion",
+        "svg",
+        "accessibility"
+      ]
+    }
+  ]
+}
