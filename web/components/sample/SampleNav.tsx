@@ -123,7 +123,7 @@ export function SampleNav() {
 
       {open && (
         <div id="sample-mobile-menu" role="dialog" aria-modal="true" aria-label="Primary navigation"
-          className="md:hidden fixed inset-0 top-16 z-40">
+          className="md:hidden fixed inset-0 top-[calc(var(--spacing-10)+4rem)] z-40">
           <div className="absolute inset-0 bg-[var(--color-bg)]/80 backdrop-blur-sm"
             onClick={() => setOpen(false)} aria-hidden="true" />
           <div ref={sheetRef}

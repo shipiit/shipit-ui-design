@@ -17,33 +17,35 @@ interface NavEntry {
   key: NavKey;
   label: string;
   href: string;
-  icon: React.ReactElement;
+  icon: () => React.ReactElement;
   badge?: string;
 }
 
 const stroke =
   "fill-none stroke-current [stroke-width:2] [stroke-linecap:round] [stroke-linejoin:round]";
 
+const SZ = { width: 18, height: 18, viewBox: "0 0 24 24" } as const;
+
 const NAV: NavEntry[] = [
   { key: "dashboard", label: "Dashboard", href: "/dashboard",
-    icon: <svg viewBox="0 0 24 24" className={stroke} aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>},
+    icon: () => <svg {...SZ} className={stroke} aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>},
   { key: "kanban", label: "Kanban", href: "/kanban",
-    icon: <svg viewBox="0 0 24 24" className={stroke} aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="11" rx="1"/><rect x="17" y="4" width="4" height="14" rx="1"/></svg>},
+    icon: () => <svg {...SZ} className={stroke} aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="11" rx="1"/><rect x="17" y="4" width="4" height="14" rx="1"/></svg>},
   { key: "inbox", label: "Inbox", href: "/inbox", badge: "9",
-    icon: <svg viewBox="0 0 24 24" className={stroke} aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5 4h14l3 8v8H2v-8z"/></svg>},
+    icon: () => <svg {...SZ} className={stroke} aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5 4h14l3 8v8H2v-8z"/></svg>},
   { key: "customers", label: "Customers", href: "#",
-    icon: <svg viewBox="0 0 24 24" className={stroke} aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.4"/><path d="M3 19c1-3 3.5-4.5 6-4.5s5 1.5 6 4.5"/><path d="M15 18c.6-2 2-3 3.5-3s2.5 1 3 3"/></svg>},
+    icon: () => <svg {...SZ} className={stroke} aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.4"/><path d="M3 19c1-3 3.5-4.5 6-4.5s5 1.5 6 4.5"/><path d="M15 18c.6-2 2-3 3.5-3s2.5 1 3 3"/></svg>},
   { key: "reports", label: "Reports", href: "#",
-    icon: <svg viewBox="0 0 24 24" className={stroke} aria-hidden="true"><path d="M5 20V10M11 20V4M17 20v-7"/></svg>},
+    icon: () => <svg {...SZ} className={stroke} aria-hidden="true"><path d="M5 20V10M11 20V4M17 20v-7"/></svg>},
   { key: "billing", label: "Billing", href: "#",
-    icon: <svg viewBox="0 0 24 24" className={stroke} aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19"/></svg>},
+    icon: () => <svg {...SZ} className={stroke} aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19"/></svg>},
 ];
 
 const NAV_FOOT: NavEntry[] = [
   { key: "settings", label: "Settings", href: "#",
-    icon: <svg viewBox="0 0 24 24" className={stroke} aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2.1-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2.1 1.2l-2.3-.9-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-.9a7 7 0 0 0 2.1 1.2L10 21h4l.5-2.6a7 7 0 0 0 2.1-1.2l2.3.9 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z"/></svg>},
+    icon: () => <svg {...SZ} className={stroke} aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2.1-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2.1 1.2l-2.3-.9-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-.9a7 7 0 0 0 2.1 1.2L10 21h4l.5-2.6a7 7 0 0 0 2.1-1.2l2.3.9 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z"/></svg>},
   { key: "help", label: "Help", href: "#",
-    icon: <svg viewBox="0 0 24 24" className={stroke} aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.6" className="fill-current"/></svg>},
+    icon: () => <svg {...SZ} className={stroke} aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.6" className="fill-current"/></svg>},
 ];
 
 /**
@@ -190,6 +192,7 @@ function Section({
       <ul className="flex flex-col gap-[var(--spacing-1)] px-[var(--spacing-2)]">
         {items.map((it) => {
           const active = activeKey === it.key;
+          const Icon = it.icon;
           return (
             <li key={it.key}>
               <a
@@ -206,7 +209,7 @@ function Section({
                 )}
               >
                 <span aria-hidden="true" className="flex h-5 w-5 items-center justify-center">
-                  {React.cloneElement(it.icon, { width: 18, height: 18 } as React.SVGAttributes<SVGElement>)}
+                  <Icon />
                 </span>
                 {!collapsed && (
                   <>
