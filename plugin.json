@@ -1,0 +1,71 @@
+{
+  "name": "claude-design-studio",
+  "version": "0.1.0",
+  "description": "Turns Claude Code into a senior UI/UX designer: bootstrap design systems, generate polished components, dashboards with charts and KPIs, iterate visually with screenshot-based critique loops, generate palettes with full color tooling, SVG illustrations, motion, and 3D scenes.",
+  "author": {
+    "name": "rahulraj",
+    "email": "rahul@iamrraj.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/rahulraj/claude-design-studio",
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "ui",
+    "ux",
+    "design",
+    "design-system",
+    "tailwind",
+    "react",
+    "next",
+    "svg",
+    "motion",
+    "three-fiber",
+    "palette",
+    "audit",
+    "dashboard",
+    "admin",
+    "charts",
+    "kpi",
+    "data-table",
+    "color",
+    "oklch",
+    "accessibility",
+    "wcag",
+    "responsive"
+  ],
+  "skills": [
+    "skills/ui-design-principles/SKILL.md",
+    "skills/motion-design/SKILL.md",
+    "skills/design-system-keeper/SKILL.md",
+    "skills/svg-illustration/SKILL.md",
+    "skills/three-d-scene/SKILL.md",
+    "skills/dashboard-design/SKILL.md",
+    "skills/data-visualization/SKILL.md",
+    "skills/color-engineering/SKILL.md"
+  ],
+  "commands": [
+    "commands/design.md",
+    "commands/palette.md",
+    "commands/component.md",
+    "commands/refine.md",
+    "commands/audit.md",
+    "commands/motion.md",
+    "commands/illustrate.md",
+    "commands/scene.md"
+  ],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "command": "hooks/design-lint.sh"
+      }
+    ]
+  },
+  "tools": {
+    "visual-loop": {
+      "path": "tools/visual-loop",
+      "command": "node tools/visual-loop/dist/index.js"
+    }
+  }
+}
