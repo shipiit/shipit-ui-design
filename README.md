@@ -12,11 +12,13 @@
 
 A [Claude Code](https://claude.com/claude-code) plugin that turns Claude Code into a senior UI/UX designer. Bootstraps design systems, generates polished components and dashboards (charts + KPIs), iterates visually via a screenshot-based critique loop. Plus palettes, motion, SVG, 3D — and a 7-rule constitution every artifact follows.
 
-[![Marketplace](https://img.shields.io/badge/install-/plugin%20marketplace%20add%20shipiit/shipit--ui--design-2b6cb0)](#-install--full-guide-for-new-users)
-[![License](https://img.shields.io/badge/License-MIT-green)](./LICENSE)
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
-![Status](https://img.shields.io/badge/status-v0.1%20scaffold-orange)
-![Stack](https://img.shields.io/badge/stack-TypeScript%20%7C%20Markdown-2b6cb0)
+[![Live demo](https://img.shields.io/badge/live%20demo-shipit--ui--design.vercel.app-brightgreen?style=flat-square)](https://shipit-ui-design.vercel.app)
+[![Marketplace](https://img.shields.io/badge/install-/plugin%20marketplace%20add%20shipiit/shipit--ui--design-2b6cb0?style=flat-square)](#-install--full-guide-for-new-users)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
+![Version](https://img.shields.io/badge/version-0.2.0-blue?style=flat-square)
+![Stack](https://img.shields.io/badge/stack-TypeScript%20%7C%20Markdown-2b6cb0?style=flat-square)
+
+**Live demo →** [shipit-ui-design.vercel.app](https://shipit-ui-design.vercel.app) · [view 7 demo routes](https://shipit-ui-design.vercel.app/examples)
 
 </div>
 
