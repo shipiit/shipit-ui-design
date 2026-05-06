@@ -15,6 +15,7 @@ A growing collection of sourced design rules `shipit-ui-design` enforces or stro
 | File | Rule | Status |
 |---|---|---|
 | [`tinted-neutrals.md`](./tinted-neutrals.md) | Never pure white on pure black; use tinted-grey ramps. | Default |
+| [`visual-richness.md`](./visual-richness.md) | Marketing surfaces must include illustrated art and rich patterns. Plain output is a failure. | Default |
 | [`sixty-thirty-ten.md`](./sixty-thirty-ten.md) | 60% Primary / 30% Secondary / 10% Accent color distribution. | Strong default |
 | [`mobile-grid-ios-android.md`](./mobile-grid-ios-android.md) | iOS/Android grid: 16px margin, 16px gutter, stretch columns; platform chrome and touch-target minimums. | Default (when mobile stack detected) |
 | [`learning-resources.md`](./learning-resources.md) | Curated free sites skills can suggest for inspiration. | Suggested |
@@ -24,6 +25,15 @@ A growing collection of sourced design rules `shipit-ui-design` enforces or stro
 Spacing cheat sheets live in a sibling directory at `references/spacing-cheat-sheets/`. They behave like design rules but are component-specific rather than system-wide:
 
 - `desktop-sidebar.md` — exact spacing for the desktop sidebar (logo, search, sections, items, promo card, user row, collapsed rail).
+
+## See also — skills (not rules)
+
+Pattern-level guidance lives in skills under `skills/`. These are reached for during generation rather than enforced as rules, but they encode the same opinions:
+
+| Skill | Covers | Status |
+|---|---|---|
+| `skills/rich-ui-patterns/SKILL.md` | Browser/device mockups, mesh gradients, layered surfaces, glassmorphism, gradient borders, tilt cards, spotlight cursor, animated borders, eyebrow pills — when generating hero, marketing, or polished UI. | See also |
+| `skills/images-and-media/SKILL.md` | Format choice (raster vs SVG vs CSS), aspect ratios, lazy/blur placeholders, art direction, photo treatment, avatar systems. | See also |
 
 ## Adding a new rule
 

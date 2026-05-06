@@ -82,27 +82,18 @@ From spec section 6.6.
 
 ## Stagger patterns
 
-Stagger reveals natural reading order. Default delay between children: 40–80 ms. Cap total at ~400 ms (8 children × 50 ms) so the last item is not perceived as late.
+Stagger reveals natural reading order. Children: 40–80 ms apart. Cap total at ~400 ms so the last item is not perceived as late.
 
-**Good**
 ```jsx
-<motion.ul variants={list} initial="hidden" animate="visible">
-  {items.map(i => (
-    <motion.li key={i.id} variants={item}>…</motion.li>
-  ))}
-</motion.ul>
-
 const list = { visible: { transition: { staggerChildren: 0.05 } } };
-const item = {
-  hidden:  { opacity: 0, y: 8 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22,1,0.36,1] } },
-};
+const item = { hidden: { opacity: 0, y: 8 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22,1,0.36,1] } } };
+<motion.ul variants={list} initial="hidden" animate="visible">
+  {items.map(i => <motion.li key={i.id} variants={item}>…</motion.li>)}
+</motion.ul>
 ```
 
-**Bad**
-- Stagger 200 ms × 12 children = 2.4 s — user reads it as broken.
-- Stagger applied to every list site-wide — becomes wallpaper, loses meaning.
-- Stagger that runs every time a list re-renders (only on initial mount or explicit transition).
+Bad: 200 ms × 12 children (2.4 s — reads as broken); stagger on every list site-wide (wallpaper); stagger on every re-render (only mount or explicit transition).
 
 ---
 
@@ -126,16 +117,14 @@ Choose one and apply globally; never mix techniques on the same site.
 
 ## `prefers-reduced-motion`
 
-Mandatory. Two acceptable patterns:
+Mandatory. Opacity-only transitions remain allowed (no vestibular trigger). Translate, scale, rotate, parallax must be disabled.
 
-**Pattern A — disable transform/translate, keep opacity**
 ```css
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 ```
 
-**Pattern B — Framer Motion**
 ```jsx
 import { useReducedMotion } from "framer-motion";
 const reduced = useReducedMotion();
@@ -143,8 +132,6 @@ const variants = reduced
   ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
   : { hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } };
 ```
-
-Rule: opacity-only transitions are still allowed under reduced-motion (they don't trigger vestibular issues). Translate, scale, rotate, parallax must be disabled.
 
 ---
 
@@ -180,14 +167,134 @@ Every interactive element gets all four. From `tokens.css`:
 
 ## Library cheat-sheet
 
-**Framer Motion**
-- `motion.<element>`, `variants`, `AnimatePresence` for exit, `layout` for layout animations, `useReducedMotion()`.
+- **Framer Motion** — `motion.<el>`, `variants`, `AnimatePresence`, `layout`, `useReducedMotion()`.
+- **Motion One** — `animate(el, { y: [10, 0], opacity: [0, 1] }, { duration: 0.6, easing: [0.22, 1, 0.36, 1] })`.
+- **GSAP** — timelines and ScrollTrigger only. Always guard with `prefers-reduced-motion` before `gsap.to`.
+- **Vue/Svelte/CSS** — `<Transition>` / `transition:` directives + token-driven classes. Never inline `0.3s` literals.
 
-**Motion One**
-- `animate(el, { y: [10, 0], opacity: [0, 1] }, { duration: 0.6, easing: [0.22, 1, 0.36, 1] })`
+---
 
-**GSAP**
-- Reserved for timelines and ScrollTrigger. Always pair with `prefers-reduced-motion` guard before `gsap.to`.
+## Advanced motion patterns
 
-**Native (Vue/Svelte/CSS)**
-- Vue `<Transition>` / Svelte `transition:` directives + token-driven CSS classes. Never inline `0.3s` literals.
+Reach for these when a screen needs depth beyond hover/focus. Every pattern ships a reduced-motion fallback. Samples use `motion/react` — verify import path at build time.
+
+### Scroll-driven reveal
+
+`whileInView` with `{ once: true, margin: "-15% 0px" }` — fires once, slightly before entry. Stagger per word or per line; never per character. Reduced-motion: instant opacity, no `y`.
+
+```jsx
+<motion.h1 initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-15% 0px" }}
+  transition={{ staggerChildren: 0.06 }}>
+  {words.map((w, i) => (
+    <motion.span key={i} variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>{w} </motion.span>
+  ))}
+</motion.h1>
+```
+
+### Parallax
+
+6–12 px translate, never above 24 px near text. Hero illustrations and decorative grids only. `useScroll` + `useTransform`. Disabled under reduced-motion.
+
+### Magnetic hover
+
+Cursor-follow translate within ±8 px on a CTA. Gate on `(pointer: fine)` to skip touch.
+
+```jsx
+const x = useMotionValue(0), y = useMotionValue(0);
+const onMove = (e) => { if (!matchMedia("(pointer: fine)").matches) return;
+  const r = e.currentTarget.getBoundingClientRect();
+  x.set(((e.clientX - r.left) / r.width - 0.5) * 16);
+  y.set(((e.clientY - r.top) / r.height - 0.5) * 16); };
+<motion.button onMouseMove={onMove} onMouseLeave={() => { x.set(0); y.set(0); }} style={{ x, y }} />
+```
+
+### Layout transitions
+
+`layout` for inline reorder; `layoutId` for cross-route shared elements (thumb → detail hero). Pair with `AnimatePresence`. Never spring-bouncy on layout-blocking transitions like router or modal open.
+
+```jsx
+<motion.li layout transition={{ type: "spring", stiffness: 300, damping: 30 }}>…</motion.li>
+<motion.img layoutId={`cover-${id}`} src={src} />
+```
+
+### Number counters
+
+Animate 0 → target on viewport entry. `Intl.NumberFormat` for grouping. Reduced-motion: render final value directly.
+
+```jsx
+const v = useMotionValue(0);
+const display = useTransform(v, (n) => new Intl.NumberFormat().format(Math.round(n)));
+useEffect(() => { animate(v, target, { duration: 1.2, ease: [0.22, 1, 0.36, 1] }); }, []);
+```
+
+### Marquee / ticker
+
+Logo grids and testimonial strips: duplicate list once, translate `-50%`, loop. Pause on hover. Reduced-motion: full-stop, single copy.
+
+```css
+.marquee { display: flex; gap: var(--space-8); animation: scroll 30s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }
+```
+
+### Page-transition reveal
+
+Radial wipe or skew slide for route changes. Next.js App Router: place a `template.tsx` (re-renders on navigation), `--dur-300` in / `--dur-200` out, `--ease-in-out-cubic`.
+
+```jsx
+export default function Template({ children }) {
+  return <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3, ease: [0.65, 0, 0.35, 1] }}>{children}</motion.div>; }
+```
+
+### Animated borders
+
+Two recipes: (a) conic-gradient rotation animating `--angle`; (b) SVG stroke `stroke-dashoffset` to zero. Reserve for the page's single most important CTA — never a list.
+
+```css
+@property --angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.btn-glow { background: conic-gradient(from var(--angle), var(--color-brand-400), var(--color-accent-400), var(--color-brand-400));
+  animation: spin 4s linear infinite; }
+@keyframes spin { to { --angle: 360deg; } }
+```
+
+### Mesh-gradient drift
+
+Slow oscillation (15–30 s) of blurred radial blobs behind hero content. `translate3d`, not `background-position` (paint thrash). Reduced-motion: static.
+
+```jsx
+<motion.div animate={{ x: [0, 40, -20, 0], y: [0, -30, 20, 0] }}
+  transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+  style={{ background: "radial-gradient(closest-side, var(--color-brand-400), transparent)",
+    filter: "blur(80px)", opacity: 0.25 }} />
+```
+
+### Typewriter / word reveal
+
+Word-by-word fade-up for display headlines, 60 ms gap. Reduced-motion: instant. Never per character.
+
+### Tilt cards
+
+`perspective(1000px) rotateX/Y` ±8° tracking cursor. Coarse-pointer: no tilt. Pair with a same-axis shadow shift.
+
+```jsx
+const onMove = (e) => { if (!matchMedia("(pointer: fine)").matches) return;
+  const r = e.currentTarget.getBoundingClientRect();
+  const px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+  e.currentTarget.style.transform = `perspective(1000px) rotateX(${-py*8}deg) rotateY(${px*8}deg)`; };
+```
+
+### Card lift on hover
+
+`y: -2`, `--shadow-md`, brand-tinted border. 200 ms ease-out. System default — do not invent per-component variants.
+
+```css
+.card { transition: transform var(--dur-200) var(--ease-out-quint),
+  box-shadow var(--dur-200) var(--ease-out-quint), border-color var(--dur-200) var(--ease-out-quint); }
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md);
+  border-color: color-mix(in oklch, var(--color-brand-400) 40%, var(--color-border)); }
+```
+
+Cross-refs: `rich-ui-patterns/SKILL.md` (visual catalog), `ui-design-principles/SKILL.md` (motion-polish rubric).

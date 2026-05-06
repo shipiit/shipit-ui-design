@@ -73,6 +73,35 @@ Find a matching blueprint in `references/component-blueprints/` keyed by stack +
 
 After writing, re-read the file and self-check against the constitution and the rubric. List any concessions you made and why. Suggest the user run `/refine <route>` once the component is wired up to a route.
 
+## Default to rich (when the surface is marketing or landing)
+
+When the requested component lives on a marketing surface — hero sections, landing pages, feature grids, pricing pages, signup pages, /about, /home — **default to rich**, not plain. Plain output on a marketing surface is a failure mode of this plugin.
+
+**Reach for these patterns by default:**
+
+| Surface | Default treatment |
+|---|---|
+| **Hero** | Illustrated SVG mockup OR animated mesh gradient bg, layered chips with motion, two-column where text-left + visual-right fits |
+| **Feature cards** | Illustrated icons ≥ 48×48 (not 24×24 monochrome glyphs), card with subtle internal gradient panel above text, hover lift + state change |
+| **Stat rows** | Animated number counters, decorative shape per stat, dotted hairline connecting horizontally, section ornament behind |
+| **Step timelines** | Illustrated icon per step inside a tinted-bg circle, animated connecting rail, "what you'll see" preview card per step |
+| **Skill / tag chips** | Mini illustrated icon per chip, subtle radial gradient bg per chip, hover scale on icon |
+| **Numbered rule cards** | Decorative ringed badge holding the number, subtle pattern on card edge |
+| **Code blocks** | Always syntax-highlighted via the `code-presentation` skill — never plain `<pre>`. |
+
+**Reject as defaults:**
+
+- 24×24 monochrome icons.
+- White cards with 1px border + plain text + nothing else.
+- Stats without decoration ("just numbers" is plain).
+- Plain `<pre>` code blocks without language label / chrome / colors.
+- Hero sections with only headline + button + no visual.
+
+When a user asks for "minimal" or "simple", honor it explicitly. Otherwise, rich is the default.
+
+**Read these skills before generating any marketing surface:**
+`skills/rich-ui-patterns/SKILL.md`, `skills/svg-illustration/SKILL.md`, `skills/motion-design/SKILL.md`, `skills/ui-design-principles/SKILL.md`.
+
 ## Error cases
 
 - Tokens absent: hard stop, prompt for `/design init`.

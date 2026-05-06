@@ -72,16 +72,29 @@ You (Claude) view the screenshots and read the relevant source files. Score the 
 
 | Category | Weight | Measures |
 |---|---|---|
-| Visual hierarchy | 15 | Type ramp, weight contrast, focal point |
+| Visual hierarchy | 10 | Type ramp, weight contrast, focal point |
 | Spacing & rhythm | 15 | 4/8px grid adherence, vertical rhythm |
 | Color & contrast | 15 | WCAG AA min, palette coherence, dark-mode parity |
 | Typography | 10 | Pairing, line-height, measure (45–75ch) |
-| Motion & polish | 15 | Hover/active/focus, easings, reduced-motion |
+| Motion & polish | 10 | Hover/active/focus, easings, reduced-motion |
 | Density & whitespace | 10 | Breathing room appropriate to surface |
 | Component quality | 10 | Affordance clarity, state coverage |
 | Accessibility | 10 | Focus rings, semantic HTML, aria, keyboard |
+| Visual richness | 10 | Illustrated art, layered surfaces, decorative motion on marketing surfaces |
 
 Record per-category scores and brief evidence (one line each) citing what you saw in the screenshots and source.
+
+#### Visual richness (10)
+
+What's measured:
+
+- **Hero / marketing surfaces**: illustrated SVG present (mockup / mesh gradient / orbiting chips). Plain hero with only text + button → 0/10.
+- **Feature cards**: illustrated icons ≥ 48×48 OR layered internal gradient panel. Flat icons + plain bg → 4/10.
+- **Code blocks**: syntax-highlighted with chrome (terminal / editor variant). Plain `<pre>` → 0/10 on any visible code.
+- **Section transitions**: ornament, alternating bg, OR illustrated divider. None → 5/10.
+- **Stat rows**: decoration around numbers (badge ring, decorative shape, animated counter). Plain numbers → 5/10.
+
+**Score cap rule.** If Visual richness scores < 4/10, the OVERALL score is hard-capped at **80** regardless of other categories. Plain marketing UI cannot pass the bar — surface this in the report and recommend `/hero` or the `rich-ui-patterns` skill.
 
 ### 5. plan
 

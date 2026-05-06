@@ -77,14 +77,29 @@ Score against the rubric (100 points total):
 
 | Category | Weight | Measures |
 |---|---|---|
-| Visual hierarchy | 15 | Type ramp, weight contrast, focal point |
+| Visual hierarchy | 10 | Type ramp, weight contrast, focal point |
 | Spacing & rhythm | 15 | 4/8px grid adherence, vertical rhythm |
 | Color & contrast | 15 | WCAG AA min, palette coherence, dark-mode parity |
 | Typography | 10 | Pairing, line-height, measure (45–75ch) |
-| Motion & polish | 15 | Hover/active/focus, easings, reduced-motion |
+| Motion & polish | 10 | Hover/active/focus, easings, reduced-motion |
 | Density & whitespace | 10 | Breathing room appropriate to surface |
 | Component quality | 10 | Affordance clarity, state coverage |
 | Accessibility | 10 | Focus rings, semantic HTML, aria, keyboard |
+| Visual richness | 10 | Illustrated art, layered surfaces, decorative motion on marketing surfaces |
+
+**Visual richness — what to surface as findings.**
+
+For every marketing surface (hero, landing, /about, /pricing, /home, feature pages), check for and report:
+
+- Hero lacks illustrated visual (no SVG mockup, no mesh gradient, no orbiting chips) → severity `major`, links to `skills/rich-ui-patterns/SKILL.md` and `skills/svg-illustration/SKILL.md`.
+- Feature cards use 24×24 monochrome icons → severity `major`, links to `skills/svg-illustration/SKILL.md`.
+- Code blocks render as plain `<pre>` (no syntax highlighting, no chrome) → severity `major`, links to `skills/code-presentation/SKILL.md`.
+- Stat row shows bare numbers without decoration or counter animation → severity `minor` (severity 2).
+- No section background alternation or ornament across a long marketing scroll → severity `minor` (severity 2).
+
+Severity scale: 1 = info, 2 = minor, 3 = major. Visual richness findings start at severity 2 (significant) and escalate to 3 when the page is explicitly a hero or top-level marketing surface.
+
+**Score cap.** If Visual richness scores < 4/10, hard-cap the overall score at 80 in the report and call this out at the top of the findings list.
 
 Then run Nielsen's 15 heuristics (the mistyhx/frontend-design-audit superset):
 

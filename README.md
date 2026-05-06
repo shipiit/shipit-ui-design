@@ -141,6 +141,41 @@ npx playwright install chromium
 
 Skip if you don't plan to use `/refine`. Other commands work without it.
 
+### Step 10 (recommended) — Make the rules apply by default
+
+Skills already auto-activate when you edit `.tsx`, `.jsx`, `.vue`, `.svelte`, `tokens.css`, or `tailwind.config.*`. To make Claude Code apply the constitution **on every UI task without ever asking**, drop a `CLAUDE.md` at one of these locations and Claude reads it on every session:
+
+| Scope | File | Effect |
+|---|---|---|
+| **Per-project** | `<your-project>/CLAUDE.md` | Default for this repo (commits to git, shared with collaborators) |
+| **Just you, per-project** | `<your-project>/.claude/CLAUDE.md` | Default for this repo (you only — git-ignored) |
+| **Global** | `~/.claude/CLAUDE.md` | Default for every project on your machine |
+
+Paste this template as a starting point:
+
+```markdown
+# UI work — defaults
+
+When working on UI in this project, apply the `shipit-ui-design` plugin's
+constitution and rubric without asking:
+
+1. Max 300 lines per file. Split before writing.
+2. No hardcoded design values. Tokens only — colors, spacing, radii,
+   shadows, durations.
+3. Every interactive element has hover, active, focus-visible, disabled.
+4. All motion respects `prefers-reduced-motion`.
+5. Every image / illustration has alt text or `aria-hidden` if decorative.
+6. Dark mode emitted alongside light from the start.
+7. Adapt to the project's existing stack — never introduce a new framework
+   or styling system.
+
+Read `references/canonical-tokens.md` and the relevant `references/design-rules/`
+files before generating any UI code. Use `/component <intent>` and
+`/refine <route>` rather than ad-hoc edits.
+```
+
+After saving, run `/reload-plugins` (or restart Claude Code) and the rules apply on every turn.
+
 ---
 
 ## 🎨 Quickstart
