@@ -6,6 +6,7 @@ import { Container } from "@/components/primitives/Container";
 import { Backdrop3D } from "@/components/illustrations/Backdrop3D";
 import { useFadeUp, useStagger } from "@/components/animations/Motion";
 import { cn } from "@/lib/utils";
+import { ThumbSettings, ThumbCards, ThumbForms } from "./_thumbs";
 
 interface Demo {
   href: string;
@@ -43,6 +44,27 @@ const DEMOS: Demo[] = [
     title: "Inbox",
     description: "Inbox · message list and detail with reply thread and composer.",
     thumb: ThumbInbox,
+  },
+  {
+    href: "/settings",
+    eyebrow: "Forms",
+    title: "Settings",
+    description: "Multi-section settings — Profile, Security, Notifications, Billing, Team, API keys + sticky save bar.",
+    thumb: ThumbSettings,
+  },
+  {
+    href: "/cards",
+    eyebrow: "Gallery",
+    title: "Card variants",
+    description: "Every card the plugin produces — KPI, profile, pricing, status, gradient, glass, and more.",
+    thumb: ThumbCards,
+  },
+  {
+    href: "/forms",
+    eyebrow: "Inputs",
+    title: "Form controls",
+    description: "Every input type with all six states — text, select, combobox, date, file, slider, toggle.",
+    thumb: ThumbForms,
   },
 ];
 

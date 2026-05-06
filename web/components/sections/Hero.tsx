@@ -214,11 +214,11 @@ export function Hero() {
 function MeshOrb({ className, color, opacity, animate, variant }: {
   className: string; color: string; opacity: number; animate: boolean; variant: "A" | "B" | "C";
 }) {
-  const motions = {
+  const motions: Record<"A" | "B" | "C", { x: number[]; y: number[] }> = {
     A: { x: [0, 24, -16, 0], y: [0, -18, 12, 0] },
     B: { x: [0, -22, 16, 0], y: [0, 14, -16, 0] },
     C: { x: [0, 18, -22, 0], y: [0, -14, 18, 0] },
-  } as const;
+  };
   const m = motions[variant];
   return (
     <motion.div
