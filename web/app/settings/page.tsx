@@ -112,7 +112,7 @@ export default function SettingsPage() {
           <Backdrop3D variant="lattice" />
         </div>
 
-        <Container variant="narrow" className="py-[var(--spacing-6)] sm:py-[var(--spacing-8)]">
+        <Container variant="wide" className="py-[var(--spacing-6)] sm:py-[var(--spacing-8)]">
           <header className="mb-[var(--spacing-6)] flex flex-wrap items-end justify-between gap-[var(--spacing-3)] sm:mb-[var(--spacing-8)]">
             <div>
               <p className="text-[length:var(--text-xs)] font-semibold uppercase tracking-[0.08em] text-[var(--color-brand-700)] dark:text-[var(--color-brand-200)]">
