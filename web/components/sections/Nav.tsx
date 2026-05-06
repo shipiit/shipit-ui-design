@@ -13,6 +13,7 @@ const LINKS = [
   { href: "#install", label: "Install" },
   { href: "#commands", label: "Commands" },
   { href: "#refine", label: "How it works" },
+  { href: "/examples", label: "Examples" },
 ];
 
 export function Nav() {
