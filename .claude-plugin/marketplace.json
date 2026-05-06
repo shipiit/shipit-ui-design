@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "shipit-ui-design",
-      "source": ".",
+      "source": "./",
       "description": "Senior UI/UX designer in your terminal — design systems, polished components, dashboards, charts, KPIs, palettes, motion, SVG, 3D, plus a screenshot-based visual critique loop.",
       "version": "0.1.0",
       "author": {
