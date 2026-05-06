@@ -66,7 +66,7 @@ export function AppShell({ title, activeKey, children }: AppShellProps) {
 
   return (
     <div
-      className="grid min-h-dvh w-full bg-[var(--color-bg)] text-[var(--color-fg)]"
+      className="grid h-dvh w-full overflow-hidden bg-[var(--color-bg)] text-[var(--color-fg)]"
       style={{
         gridTemplateAreas: '"topbar topbar" "sidebar content"',
         gridTemplateColumns: collapsed ? "64px 1fr" : "240px 1fr",
@@ -101,7 +101,7 @@ export function AppShell({ title, activeKey, children }: AppShellProps) {
 
       <main
         id="main"
-        className="min-w-0 overflow-x-hidden p-[var(--spacing-4)] sm:p-[var(--spacing-6)] lg:p-[var(--spacing-8)]"
+        className="min-w-0 overflow-y-auto overflow-x-hidden p-[var(--spacing-4)] sm:p-[var(--spacing-6)] lg:p-[var(--spacing-8)]"
         style={{ gridArea: "content" }}
       >
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-[var(--radius-md)] focus:bg-[var(--color-brand)] focus:px-[var(--spacing-3)] focus:py-[var(--spacing-2)] focus:text-[var(--color-fg-on-brand)]">
