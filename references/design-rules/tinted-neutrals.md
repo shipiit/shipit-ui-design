@@ -2,7 +2,7 @@
 
 > Don't use pure white on pure black. Color your neutrals. Tinted greys express a wider range of color, elevation, and depth.
 
-This is a **default rule** for every palette and theme `claude-design-studio` produces. To override, the user must explicitly request "pure neutrals."
+This is a **default rule** for every palette and theme `shipit-ui-design` produces. To override, the user must explicitly request "pure neutrals."
 
 ## The rule
 

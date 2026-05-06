@@ -1,6 +1,6 @@
 # Desktop Sidebar — Spacing Cheat Sheet
 
-Authoritative spacing rules for desktop sidebars produced by `claude-design-studio`. Sourced from a user-provided spec ("Ultimate Spacing Cheat Sheet — Desktop Sidebar") and translated into the plugin's token system. The dashboard `app-shell-sidebar.md` blueprint must reference this file rather than duplicate values.
+Authoritative spacing rules for desktop sidebars produced by `shipit-ui-design`. Sourced from a user-provided spec ("Ultimate Spacing Cheat Sheet — Desktop Sidebar") and translated into the plugin's token system. The dashboard `app-shell-sidebar.md` blueprint must reference this file rather than duplicate values.
 
 All values are pixels; tokens shown in parens. Light and dark modes use the same spacing — only colors differ.
 

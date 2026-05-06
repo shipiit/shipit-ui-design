@@ -1,6 +1,6 @@
 ---
 name: ui-design-principles
-description: Apply the claude-design-studio rubric (visual hierarchy, spacing, color/contrast, typography, motion, density, component quality, accessibility) when generating, refining, or auditing UI in .tsx/.jsx/.vue/.svelte files.
+description: Apply the shipit-ui-design rubric (visual hierarchy, spacing, color/contrast, typography, motion, density, component quality, accessibility) when generating, refining, or auditing UI in .tsx/.jsx/.vue/.svelte files.
 type: skill
 ---
 

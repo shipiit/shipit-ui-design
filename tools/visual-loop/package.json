@@ -1,7 +1,7 @@
 {
-  "name": "@claude-design-studio/visual-loop",
+  "name": "@shipit-ui-design/visual-loop",
   "version": "0.1.0",
-  "description": "Headless-browser screenshot runner for the /refine slash command in claude-design-studio.",
+  "description": "Headless-browser screenshot runner for the /refine slash command in shipit-ui-design.",
   "private": true,
   "type": "module",
   "engines": {

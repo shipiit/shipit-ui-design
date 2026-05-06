@@ -64,7 +64,7 @@ Sites that look junior usually overspend the accent budget. A button is red, a t
 3. **Multiple competing accents.** Pick one CTA color. Status colors are not accents — they are signals.
 4. **Counting backgrounds wrong.** A 60% white page with 30% gray sidebar and 10% blue button is the rule. A page with a 60% gradient hero, 30% photo, 10% small button is not — the photo dominates.
 
-## How `claude-design-studio` applies the rule
+## How `shipit-ui-design` applies the rule
 
 - `/palette` generates ramps and assigns semantic tokens such that the 60%/30%/10% mapping above holds by default.
 - `/design init` writes `--color-bg` (60%), `--color-surface-elevated` (30%), `--color-brand` (10%) wired so a default page already conforms.

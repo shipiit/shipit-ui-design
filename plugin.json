@@ -1,5 +1,5 @@
 {
-  "name": "claude-design-studio",
+  "name": "shipit-ui-design",
   "version": "0.1.0",
   "description": "Turns Claude Code into a senior UI/UX designer: bootstrap design systems, generate polished components, dashboards with charts and KPIs, iterate visually with screenshot-based critique loops, generate palettes with full color tooling, SVG illustrations, motion, and 3D scenes.",
   "author": {
@@ -7,7 +7,7 @@
     "email": "rahul@iamrraj.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/rahulraj/claude-design-studio",
+  "homepage": "https://github.com/shipiit/shipit-ui-design",
   "keywords": [
     "claude-code",
     "plugin",

@@ -1,6 +1,6 @@
 # Design Rule: Mobile Grid — iOS and Android
 
-Authoritative grid guidelines for iOS and Android app surfaces produced by `claude-design-studio`. Sourced from a user-supplied "Grid Guidelines for iOS and Android" reference and translated into the plugin's token system.
+Authoritative grid guidelines for iOS and Android app surfaces produced by `shipit-ui-design`. Sourced from a user-supplied "Grid Guidelines for iOS and Android" reference and translated into the plugin's token system.
 
 This rule applies to **mobile app UI** (React Native, Flutter, Swift/Kotlin native, mobile-web simulating an app). It does not apply to responsive web — those rules live in `references/responsive-grids/`.
 
@@ -104,7 +104,7 @@ When in doubt, follow the platform native pattern. Custom sheet behavior is the 
 - **Custom-branded experiences** (games, immersive media, first-run onboarding): break the safe-area chrome conventions deliberately, and re-establish them once the user enters the app proper.
 - **Cross-platform consistency over native feel:** some teams pick consistency (same UI on iOS and Android) over native feel (each platform's conventions). Document the choice; do not let it drift.
 
-## How `claude-design-studio` applies the rule
+## How `shipit-ui-design` applies the rule
 
 - `/component` checks the project context — if React Native / Flutter / Expo / native is detected, components default to the mobile rules above.
 - `/design init` emits mobile-specific tokens (touch target min, app bar height, tab bar height) under `--mobile-*` aliases when a mobile stack is detected.

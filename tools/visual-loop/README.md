@@ -1,6 +1,6 @@
 # visual-loop
 
-Headless-browser screenshot runner for the `claude-design-studio` plugin. Shell-out target for the `/refine` slash command.
+Headless-browser screenshot runner for the `shipit-ui-design` plugin. Shell-out target for the `/refine` slash command.
 
 This tool does only the mechanical work — boot dev server, drive Playwright, write screenshots and a manifest. Critique, scoring, planning, and edits are Claude's job (see spec section 7.1).
 

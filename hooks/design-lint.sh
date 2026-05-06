@@ -1,5 +1,5 @@
 #!/bin/sh
-# design-lint.sh — claude-design-studio PostToolUse hook (Edit/Write).
+# design-lint.sh — shipit-ui-design PostToolUse hook (Edit/Write).
 # Informational only: warns on long files, bare hex, bare px in inline style props.
 # Never blocks, never edits. POSIX sh, dependency-free.
 #

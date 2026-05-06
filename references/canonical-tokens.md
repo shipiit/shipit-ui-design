@@ -1,6 +1,6 @@
 # Canonical Token Names
 
-Single source of truth for the design-token names used across all `claude-design-studio` skills, commands, and references. When agents wrote different naming variants during the parallel build, this file resolves which form is canonical and which (if any) are accepted aliases.
+Single source of truth for the design-token names used across all `shipit-ui-design` skills, commands, and references. When agents wrote different naming variants during the parallel build, this file resolves which form is canonical and which (if any) are accepted aliases.
 
 When generating user code, prefer the **canonical** column. When reading existing user code, accept any of the **also-acceptable** forms — they encode the same intent.
 

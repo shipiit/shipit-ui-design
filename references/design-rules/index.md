@@ -1,6 +1,6 @@
 # Design Rules — Index
 
-A growing collection of sourced design rules `claude-design-studio` enforces or strongly suggests. Each rule is a single file with: the rule, why, the recommended approach, anti-patterns, token mapping, and cross-references.
+A growing collection of sourced design rules `shipit-ui-design` enforces or strongly suggests. Each rule is a single file with: the rule, why, the recommended approach, anti-patterns, token mapping, and cross-references.
 
 ## Status types
 
