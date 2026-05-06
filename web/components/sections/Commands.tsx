@@ -5,6 +5,7 @@ import { Container } from "@/components/primitives/Container";
 import { CodeBlock } from "@/components/primitives/CodeBlock";
 import { motion, useFadeUp } from "@/components/animations/Motion";
 import { cn } from "@/lib/utils";
+import { Backdrop3D } from "@/components/illustrations/Backdrop3D";
 
 interface CommandTab {
   id: string;
@@ -110,9 +111,10 @@ export function Commands() {
     <section
       id="commands"
       aria-labelledby="commands-title"
-      className="py-24 lg:py-32"
+      className="relative py-24 lg:py-32 overflow-hidden"
     >
-      <Container>
+      <Backdrop3D variant="lattice" />
+      <Container className="relative z-10">
         <div className="max-w-3xl mb-12 lg:mb-16">
           <p
             className="

@@ -15,6 +15,7 @@ import {
   useReducedMotion,
 } from "motion/react";
 import { SectionOrnament } from "@/components/illustrations/SectionOrnament";
+import { Backdrop3D } from "@/components/illustrations/Backdrop3D";
 
 type StatGlyph = "terminal" | "sparkles" | "target" | "ruler";
 
@@ -115,8 +116,9 @@ export function Highlights() {
       className="relative py-24 lg:py-32 overflow-hidden"
     >
       <SectionOrnament variant="top" tone="brand" />
+      <Backdrop3D variant="orbs" />
 
-      <Container>
+      <Container className="relative z-10">
         <motion.p
           id="highlights-eyebrow"
           initial="hidden"

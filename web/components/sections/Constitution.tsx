@@ -10,6 +10,7 @@ import {
 import { BadgeNumberRing } from "@/components/illustrations/BadgeNumberRing";
 import { SectionOrnament } from "@/components/illustrations/SectionOrnament";
 import { SparkleIcon } from "@/components/illustrations/SparkleIcon";
+import { Backdrop3D } from "@/components/illustrations/Backdrop3D";
 
 interface Rule {
   title: string;
@@ -91,8 +92,9 @@ export function Constitution() {
       className="relative py-24 lg:py-32 overflow-hidden"
     >
       <SectionOrnament variant="top" tone="brand" />
+      <Backdrop3D variant="soft-mesh" />
 
-      <Container>
+      <Container className="relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"

@@ -5,6 +5,7 @@ import { Install } from "@/components/sections/Install";
 import { Features } from "@/components/sections/Features";
 import { Commands } from "@/components/sections/Commands";
 import { Refine } from "@/components/sections/Refine";
+import { RichByDefault } from "@/components/sections/RichByDefault";
 import { Skills } from "@/components/sections/Skills";
 import { Constitution } from "@/components/sections/Constitution";
 import { CodeExample } from "@/components/sections/CodeExample";
@@ -36,15 +37,18 @@ export default function Page() {
           <Refine />
         </div>
         <div className={divider}>
+          <RichByDefault />
+        </div>
+        <div className={`${surface} ${divider}`}>
           <Skills />
         </div>
-        <div className={`${surface} ${divider}`}>
+        <div className={divider}>
           <Constitution />
         </div>
-        <div className={divider}>
+        <div className={`${surface} ${divider}`}>
           <CodeExample />
         </div>
-        <div className={`${surface} ${divider}`}>
+        <div className={divider}>
           <FAQ />
         </div>
       </main>

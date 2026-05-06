@@ -4,6 +4,7 @@ import * as React from "react";
 import { Container } from "@/components/primitives/Container";
 import { CodeBlock } from "@/components/primitives/CodeBlock";
 import { motion, useFadeUp, useStagger } from "@/components/animations/Motion";
+import { Backdrop3D } from "@/components/illustrations/Backdrop3D";
 
 const BAD_CODE = `.button {
   background: #4f46e5;
@@ -46,9 +47,10 @@ export function CodeExample() {
     <section
       id="example"
       aria-labelledby="example-title"
-      className="py-24 lg:py-32"
+      className="relative py-24 lg:py-32 overflow-hidden"
     >
-      <Container>
+      <Backdrop3D variant="grid-tilt" />
+      <Container className="relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"

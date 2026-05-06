@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Container } from "@/components/primitives/Container";
 import { motion, useFadeUp, useStagger } from "@/components/animations/Motion";
+import { Backdrop3D } from "@/components/illustrations/Backdrop3D";
 
 interface QA {
   q: string;
@@ -117,9 +118,10 @@ export function FAQ() {
     <section
       id="faq"
       aria-labelledby="faq-title"
-      className="py-24 lg:py-32"
+      className="relative py-24 lg:py-32 overflow-hidden"
     >
-      <Container>
+      <Backdrop3D variant="lattice" />
+      <Container className="relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"

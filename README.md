@@ -201,6 +201,7 @@ Claude Code namespaces plugin commands. So `/design init` actually fires as `/sh
 | `/design init` | `/shipit-ui-design:design init` |
 | `/palette` | `/shipit-ui-design:palette` |
 | `/component` | `/shipit-ui-design:component` |
+| `/hero` | `/shipit-ui-design:hero` |
 | `/refine` | `/shipit-ui-design:refine` |
 | `/audit` | `/shipit-ui-design:audit` |
 | `/motion` | `/shipit-ui-design:motion` |
@@ -215,12 +216,33 @@ Claude Code namespaces plugin commands. So `/design init` actually fires as `/sh
 |---|---|
 | `/design init` | Bootstrap a design system: tokens, Tailwind/CSS-vars wiring, base primitives (Button, Input, Card, Stack, Text, Container), motion presets, dark mode. Idempotent. |
 | `/palette [seed\|mood]` | Generate a coherent 11-step light + dark palette using OKLCH-correct interpolation. Hex, image, or mood. WCAG-AA verified. |
-| `/component <intent>` | Generate a polished, fully-stated, fully-tokenized component. Splits across files if approaching 300-line cap. |
-| `/refine [route\|file]` | Visual loop: screenshot → critique → fix → repeat until quality bar met. See [🔁 /refine](#-how-refine-works) below. |
-| `/audit [path\|url]` | Read-only design audit. Multi-route audits fan out parallel subagents (cap 4). |
+| `/component <intent>` | Generate a polished, fully-stated, fully-tokenized component. **Defaults to rich on marketing surfaces** — illustrated icons, layered surfaces, motion. |
+| `/hero <intent>` | **NEW.** Generate a rich illustrated hero from intent. Two-column with mockup illustration, animated mesh gradient, orbiting chips, primary + ghost CTAs, syntax-highlighted code block. |
+| `/refine [route\|file]` | Visual loop: screenshot → critique → fix → repeat until quality bar met. **9-category rubric** including Visual Richness (hard-caps overall at 80 when missing). |
+| `/audit [path\|url]` | Read-only design audit. Surfaces Visual Richness findings. Multi-route audits fan out parallel subagents (cap 4). |
 | `/motion <element>` | Add tasteful motion — Framer Motion (React), Motion One (vanilla), GSAP (heavy timelines). Always `prefers-reduced-motion`-safe. |
 | `/illustrate <description>` | Generate a clean SVG illustration matched to project tokens. Geometric / two-tone / soft-gradient / isometric / line-art. |
 | `/scene <description>` | Generate a React Three Fiber scene. Asks before adding deps. |
+
+## 🌈 Rich by default (the new mandate)
+
+On marketing surfaces (hero, landing, /about, /pricing), the plugin now **defaults to rich** and rejects plain UI. Stack-respect is preserved — it adapts to your framework — but the visual baseline changed:
+
+**Reaches for, by default:**
+
+- Illustrated SVG icons ≥ 48×48 (not 24×24 monochrome glyphs)
+- Layered surfaces with internal gradient panels
+- Mesh-gradient or section-ornament backgrounds where space permits
+- Animated number counters on stat rows
+- Animated step circles + connecting rails on timelines
+- Decorative ringed badges on numbered cards
+- Syntax-highlighted code blocks via the `code-presentation` skill — never plain `<pre>`
+
+**Rejects as defaults:** 24×24 monochrome icons · plain white cards with text-only content · plain numbers without decoration · `<pre>` blocks without language label or chrome · hero sections with only headline + button.
+
+**The score cap.** `/refine` runs a 9-category rubric totaling 100 points. The new **Visual Richness (10pt)** category measures: hero illustration present, feature cards with illustrated panels, code blocks syntax-highlighted, section transitions decorated, stats decorated. **If Visual Richness scores below 4/10, the overall score is hard-capped at 80** regardless of other categories. Plain marketing UI cannot pass the bar.
+
+When you genuinely want plain output (data-dense dashboards, in-product surfaces under cognitive load), say so — `/component <intent> --minimal` or just say "minimal" in the intent. The plugin honors explicit opt-outs.
 
 ---
 

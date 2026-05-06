@@ -15,6 +15,7 @@ import { InstallIcon } from "@/components/illustrations/InstallIcon";
 import { ActivateIcon } from "@/components/illustrations/ActivateIcon";
 import { SparkleIcon } from "@/components/illustrations/SparkleIcon";
 import { InstallPreview } from "@/components/sections/InstallPreview";
+import { Backdrop3D } from "@/components/illustrations/Backdrop3D";
 
 type IconKey = "marketplace" | "install" | "activate";
 
@@ -79,9 +80,10 @@ export function Install() {
     <section
       id="install"
       aria-labelledby="install-title"
-      className="py-24 lg:py-32"
+      className="relative py-24 lg:py-32 overflow-hidden"
     >
-      <Container variant="wide">
+      <Backdrop3D variant="grid-tilt" />
+      <Container variant="wide" className="relative z-10">
         <div className="mb-12 lg:mb-16 max-w-3xl">
           <p
             className="

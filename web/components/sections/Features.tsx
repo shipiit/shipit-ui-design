@@ -16,6 +16,8 @@ import { AccessibilityIcon } from "@/components/illustrations/AccessibilityIcon"
 import { StackIcon } from "@/components/illustrations/StackIcon";
 import { SectionOrnament } from "@/components/illustrations/SectionOrnament";
 import { SparkleIcon } from "@/components/illustrations/SparkleIcon";
+import { OrbitingDots } from "@/components/illustrations/OrbitingDots";
+import { Backdrop3D } from "@/components/illustrations/Backdrop3D";
 
 type IconKey =
   | "loop"
@@ -77,7 +79,7 @@ const FEATURES: Feature[] = [
 ];
 
 // One-off inline 6-palette-grid SVG (≤ 30 lines).
-function PaletteGridIcon({ animated }: { animated: boolean }) {
+function PaletteGridIcon({ animated, size = 112 }: { animated: boolean; size?: number }) {
   const TILES = [
     { x: 6, y: 8, c1: "var(--color-accent-300)", c2: "var(--color-accent-500)" },
     { x: 24, y: 8, c1: "var(--color-brand-300)", c2: "var(--color-brand-600)" },
@@ -87,7 +89,7 @@ function PaletteGridIcon({ animated }: { animated: boolean }) {
     { x: 42, y: 36, c1: "var(--color-accent-100)", c2: "var(--color-accent-600)" },
   ];
   return (
-    <svg role="img" aria-label="Six curated palettes" viewBox="0 0 64 64" width={64} height={64}>
+    <svg role="img" aria-label="Six curated palettes" viewBox="0 0 64 64" width={size} height={size}>
       {TILES.map((t, i) => (
         <g key={i} style={animated ? { animation: `pg-pop 1.2s ${i * 0.08}s ease-out both` } : undefined}>
           <rect x={t.x} y={t.y} width="16" height="20" rx="3" fill={t.c1} stroke="var(--color-border)" strokeWidth="0.5" />
@@ -102,24 +104,25 @@ function PaletteGridIcon({ animated }: { animated: boolean }) {
 }
 
 function FeatureIllustration({ icon, animated }: { icon: IconKey; animated: boolean }) {
+  const SZ = 112;
   switch (icon) {
     case "loop":
-      return <PlaywrightIcon size={64} animated={animated} />;
+      return <PlaywrightIcon size={SZ} animated={animated} />;
     case "dashboard":
-      return <DashboardIcon size={64} animated={animated} />;
+      return <DashboardIcon size={SZ} animated={animated} />;
     case "color":
-      return <PaletteIcon size={64} animated={animated} />;
+      return <PaletteIcon size={SZ} animated={animated} />;
     case "motion":
-      return <MotionIcon size={64} animated={animated} />;
+      return <MotionIcon size={SZ} animated={animated} />;
     case "palette-grid":
-      return <PaletteGridIcon animated={animated} />;
+      return <PaletteGridIcon animated={animated} size={SZ} />;
     case "rules":
-      return <AccessibilityIcon size={64} animated={animated} />;
+      return <AccessibilityIcon size={SZ} animated={animated} />;
     case "constitution":
       // Reuse PaletteIcon would mismatch; pick a fitting one — Stack feels apt for "constitution".
-      return <StackIcon size={64} animated={animated} />;
+      return <StackIcon size={SZ} animated={animated} />;
     case "stack":
-      return <StackIcon size={64} animated={animated} />;
+      return <StackIcon size={SZ} animated={animated} />;
   }
 }
 
@@ -157,21 +160,31 @@ function FeatureCard({ feat }: { feat: Feature }) {
       <div
         aria-hidden="true"
         className="
+          relative
           flex items-center justify-center
-          h-32 w-full
+          min-h-[180px] w-full
           border-b border-[var(--color-border-subtle)]
+          overflow-hidden
         "
         style={{
           background:
-            "linear-gradient(180deg, color-mix(in oklab, var(--color-brand-500) 8%, var(--color-surface) 92%) 0%, var(--color-surface) 100%)",
+            "radial-gradient(120% 80% at 50% 0%, color-mix(in oklab, var(--color-brand-500) 14%, var(--color-surface) 86%) 0%, var(--color-surface) 70%)",
         }}
       >
-        <FeatureIllustration icon={feat.icon} animated={animated} />
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 flex items-center justify-center opacity-30"
+        >
+          <OrbitingDots size={220} />
+        </span>
+        <span className="relative z-[1] flex items-center justify-center w-28 h-28">
+          <FeatureIllustration icon={feat.icon} animated={animated} />
+        </span>
       </div>
       <div className="p-6 lg:p-7 flex flex-col gap-2">
         <h3
           className="
-            text-[length:var(--text-lg)] font-semibold
+            text-[length:var(--text-xl)] font-semibold
             text-[var(--color-fg)] tracking-tight
           "
         >
@@ -201,8 +214,9 @@ export function Features() {
     >
       <SectionOrnament variant="left" tone="brand" />
       <SectionOrnament variant="right" tone="accent" />
+      <Backdrop3D variant="lattice" />
 
-      <Container>
+      <Container className="relative z-10">
         <div className="max-w-3xl mb-14 lg:mb-20">
           <p
             className="

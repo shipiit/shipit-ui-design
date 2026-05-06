@@ -13,6 +13,7 @@ import {
 } from "@/components/illustrations/SkillChipIcon";
 import { SparkleIcon } from "@/components/illustrations/SparkleIcon";
 import { PathDrawCurve } from "@/components/illustrations/PathDrawCurve";
+import { Backdrop3D } from "@/components/illustrations/Backdrop3D";
 
 interface Skill {
   name: string;
@@ -39,9 +40,10 @@ export function Skills() {
     <section
       id="skills"
       aria-labelledby="skills-title"
-      className="py-24 lg:py-32"
+      className="relative py-24 lg:py-32 overflow-hidden"
     >
-      <Container>
+      <Backdrop3D variant="wireframe" />
+      <Container className="relative z-10">
         <div className="max-w-3xl mb-12 lg:mb-16">
           <p
             className="
