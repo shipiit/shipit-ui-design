@@ -1,7 +1,7 @@
 {
   "name": "shipit-ui-design",
-  "version": "0.1.0",
-  "description": "Senior UI/UX designer in your terminal — bootstraps design systems, generates polished components and dashboards, iterates visually via screenshot critique loops, plus palettes, SVG, motion, and 3D.",
+  "version": "0.2.0",
+  "description": "Senior UI/UX designer in your terminal — defaults to rich illustrated output. Bootstraps design systems, generates polished components / dashboards / heroes, iterates visually via screenshot critique loops, plus palettes, SVG, motion, 3D, and syntax-highlighted code blocks. 11 skills, 9 commands, 9-category rubric.",
   "author": {
     "name": "Rahul Raj",
     "email": "rahul@iamrraj.com"

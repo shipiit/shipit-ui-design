@@ -5,13 +5,13 @@
     "name": "Rahul Raj",
     "email": "rahul@iamrraj.com"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "plugins": [
     {
       "name": "shipit-ui-design",
       "source": "./",
-      "description": "Senior UI/UX designer in your terminal — design systems, polished components, dashboards, charts, KPIs, palettes, motion, SVG, 3D, plus a screenshot-based visual critique loop.",
-      "version": "0.1.0",
+      "description": "Senior UI/UX designer in your terminal — defaults to rich. 11 skills, 9 commands, 9-category rubric, /hero command, syntax-highlighted code, illustrated mockups, mesh gradients, 3D-feel backdrops.",
+      "version": "0.2.0",
       "author": {
         "name": "Rahul Raj"
       },
