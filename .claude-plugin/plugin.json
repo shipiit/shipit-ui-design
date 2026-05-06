@@ -8,10 +8,7 @@
   },
   "license": "MIT",
   "homepage": "https://github.com/shipiit/shipit-ui-design",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/shipiit/shipit-ui-design.git"
-  },
+  "repository": "https://github.com/shipiit/shipit-ui-design.git",
   "keywords": [
     "claude-code",
     "plugin",
